@@ -5,8 +5,6 @@ Ce dépôt contient partiellement les fichiers nécessaires à la réalisation d
 
 Chaque branche de ce dépôt correspond à une étape du tutoriel. Voir ci-dessous pour plus de détails.
 
-=============================
-
 ## Signification des branches
 
 - ***P2C1-exercice***
