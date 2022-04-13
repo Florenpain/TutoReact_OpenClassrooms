@@ -6,9 +6,10 @@ const StyledGlobalStyle = createGlobalStyle`
     * {
       font-family: 'Trebuchet MS', Helvetica, sans-serif;
     }
+
     body {
-        background-color: ${({ isDarkMode }) =>
-          isDarkMode ? '#2F2E41' : 'white'};
+        background-color: ${(props) =>
+          props.isDarkMode ? '#2F2E41' : 'white'};
         margin: 0;
     }
 `

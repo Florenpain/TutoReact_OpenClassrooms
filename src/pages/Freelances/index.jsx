@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react'
 import Card from '../../components/Card'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { useState, useEffect } from 'react'
 import { Loader } from '../../utils/style/Atoms'
 
 const CardsContainer = styled.div`
@@ -27,31 +27,15 @@ const PageSubtitle = styled.h2`
   text-align: center;
   padding-bottom: 30px;
 `
-
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
 `
 
-// const freelanceProfiles = [
-//   {
-//     name: 'Jane Doe',
-//     jobTitle: 'Devops',
-//   },
-//   {
-//     name: 'John Doe',
-//     jobTitle: 'Developpeur frontend',
-//   },
-//   {
-//     name: 'Jeanne Biche',
-//     jobTitle: 'Développeuse Fullstack',
-//   },
-// ]
-
 function Freelances() {
   const [isDataLoading, setDataLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [freelanceProfilesData, setfreelanceProfilesData] = useState([])
+  const [freelancersList, setFreelancesList] = useState([])
 
   useEffect(() => {
     async function fetchFreelances() {
@@ -59,10 +43,9 @@ function Freelances() {
       try {
         const response = await fetch(`http://localhost:8000/freelances`)
         const { freelancersList } = await response.json()
-        //console.log(freelancersListTest)
-        setfreelanceProfilesData(freelancersList)
+        setFreelancesList(freelancersList)
       } catch (err) {
-        console.log('===== error =====', err)
+        console.log(err)
         setError(true)
       } finally {
         setDataLoading(false)
@@ -87,7 +70,7 @@ function Freelances() {
         </LoaderWrapper>
       ) : (
         <CardsContainer>
-          {freelanceProfilesData.map((profile, index) => (
+          {freelancersList.map((profile, index) => (
             <Card
               key={`${profile.name}-${index}`}
               label={profile.job}
@@ -100,4 +83,5 @@ function Freelances() {
     </div>
   )
 }
+
 export default Freelances
