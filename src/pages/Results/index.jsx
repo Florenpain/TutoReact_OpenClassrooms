@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { SurveyContext } from '../../utils/context'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { useFetch } from '../../utils/hooks'
+import { useFetch, useTheme } from '../../utils/hooks'
 import { StyledLink, Loader } from '../../utils/style/Atoms'
 import { ThemeContext } from '../../utils/context'
 
@@ -64,13 +64,11 @@ function formatFetchParams(answers) {
 }
 
 function Results() {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useTheme()
   const { answers } = useContext(SurveyContext)
   const fetchParams = formatFetchParams(answers)
 
-  const { data, isLoading, error } = useFetch(
-    `http://localhost:8000/results?${fetchParams}`
-  )
+  const { data, isLoading, error } = useFetch(`http://localhost:8000/results?${fetchParams}`)
 
   if (error) {
     return <span>Il y a un problème</span>
